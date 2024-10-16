@@ -1,3 +1,5 @@
+package main;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -63,21 +65,25 @@ public class ImageController {
             view.setImage(model.getNextImage());
 
             if (mode2Active) {
-                List<String> names = model.getRandomNames(4);
+                List<String> names = model.getRandomNames(Math.min(4, model.imageCount()));
                 correctAnswer = model.getCurrentImageName();
-                names.set(new Random().nextInt(4), correctAnswer);  // Set one correct answer
-                for (int i = 0; i < 4; i++) {
+                names.set(new Random().nextInt(Math.min(4, model.imageCount())), correctAnswer);  // Set one correct answer
+                for (int i = 0; i < Math.min(4, model.imageCount()); i++) {
                     view.setOptionButtonText(i, names.get(i));
                 }
             }
 
             // Ensure GUI updates properly
-            view.revalidate();
-            view.repaint();
 
         } else {
-            view.showMessage("All images used!");
+            view.showMessage("All images used! \n The images will now be reshuffled");
+            model.shuffleImages();
+            model.resetUses();
+            loadNextImage();
+
         }
+        view.revalidate();
+        view.repaint();
     }
 
     public void toggleMode2() {

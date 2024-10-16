@@ -8,6 +8,7 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+
 sourceSets {
     main {
         java {
@@ -15,11 +16,21 @@ sourceSets {
         }
     }
 }
+
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    // Use JUnit BOM to manage JUnit versions
+    testImplementation(platform('org.junit:junit-bom:5.10.0'))
+
+    // JUnit Jupiter API and engine dependency for testing
+    //testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    //testImplementation 'org.testng:testng:7.1.0'
+    testImplementation project(path: ':')
+    testImplementation project(path: ':')
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.testng:testng:7.1.0'
 }
 
 test {
+    // Use JUnit Platform for testing
     useJUnitPlatform()
 }

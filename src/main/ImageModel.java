@@ -1,3 +1,5 @@
+package main;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -72,5 +74,19 @@ public class ImageModel {
         }
         Collections.shuffle(names);
         return names.subList(0, count);
+    }
+
+    public void shuffleImages() {
+        Collections.shuffle(imageFiles);
+    }
+
+    public void resetUses(){
+        for(int i  = 0; i < imageFiles.size(); i++){
+            usedImages[i] = false;
+        }
+    }
+
+    public int imageCount(){
+        return imageFiles.size();
     }
 }
