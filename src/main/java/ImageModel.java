@@ -1,5 +1,3 @@
-package main;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,6 +52,14 @@ public class ImageModel {
 
     public boolean isImageNameMatching(String text) {
         return text.equalsIgnoreCase(imageFiles.get(currentIndex).getName().split("\\.")[0]);
+    }
+
+    public int getCurrentIndex(){
+        return currentIndex;
+    }
+
+    public List<File> getImageFiles(){
+        return imageFiles;
     }
 
     public String getCurrentImageName() {
